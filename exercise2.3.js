@@ -12,9 +12,4 @@ function numbersGame(n) {
     }
     return n;
 }
-numbersGame(2);
-
-//Otherwise it should multiply the number by 10
-//however many times it takes to get a number
-//that is greater than or equal to 1000000 and
-//return that.
+(numbersGame(2);

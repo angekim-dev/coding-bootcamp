@@ -1,5 +1,5 @@
-function waitThenRun(arg) {
-    setTimeout(arg, 1500);
+function waitThenRun(x) {
+    setTimeout(x, 1500);
 }
 
 waitThenRun(function() {
