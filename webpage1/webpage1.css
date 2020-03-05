@@ -1,9 +1,10 @@
-header {
+#top {
     position: relative;
     padding: 20px;
     border: 1px gray dashed;
 }
 #logo {
+    position: relative;
     height: 30px;
 }
 #menu {
@@ -13,6 +14,42 @@ header {
     height: 30px;
     width: 30px;
 }
+.welcome {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
 #background-spices {
     display: inline-block;
+    position: relative;
+    width: 100%;
+}
+#icon-section {
+    background-color: lightgray;
+}
+.icon {
+    height: 50px;
+}
+.top-cell {
+    position: absolute;
+    width: 48%;
+    display: inline-block;
+}
+.bottom-cell {
+    position: absolute;
+    width: 48%;
+    display: inline-block;
+}
+.second {
+    left: 50%;
+}
+.bottom-cell {
+    width: 50%;
+    display: table-cell;
+}
+#footer {
+    background-color: gray;
+    padding: 10px;
+    font-size: small;
+    color: white;
 }
