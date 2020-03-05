@@ -1,11 +1,11 @@
 function each(objOrArr, callback) {
-    if (Array.isArray(objOrArr) == false) {
-        for (var p in objOrArr) {
-            console.log(callback(objOrArr[p], p));
-        }
-    } else if (Array.isArray(objOrArr) == true) {
+    if (Array.isArray(objOrArr) == true) {
         for (var i = 0; i < objOrArr.length; i++) {
             console.log(callback(objOrArr[i], i));
+        }
+    } else if (typeof objOrArr == "object") {
+        for (var p in objOrArr) {
+            console.log(callback(objOrArr[p], p));
         }
     }
 }
