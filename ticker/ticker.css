@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#ticker {
+    overflow: hidden;
+    height: 1.5em;
+    width: 100%;
+    position: relative;
+    animation: 50s infinite slide;
+}
+
+#headlines {
+    white-space: nowrap;
+    position: absolute;
+    left: 0%;
+}
+
+#headlines a {
+    padding-right: 40px;
+}
+
+@keyframes slide {
+    from {
+    margin-left: 100%;
+  }
+
+  to {
+    transform: margin-left: 0%;
+  }
+}
+}
