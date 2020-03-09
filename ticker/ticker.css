@@ -11,26 +11,14 @@ body {
     height: 1.5em;
     width: 100%;
     position: relative;
-    animation: 50s infinite slide;
 }
 
 #headlines {
     white-space: nowrap;
     position: absolute;
-    left: 0%;
+    left: 100%;
 }
 
 #headlines a {
     padding-right: 40px;
-}
-
-@keyframes slide {
-    from {
-    margin-left: 100%;
-  }
-
-  to {
-    transform: margin-left: 0%;
-  }
-}
 }

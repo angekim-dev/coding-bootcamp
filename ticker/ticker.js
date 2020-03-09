@@ -1,24 +1,22 @@
 (function() {
     var headlines = document.getElementById("headlines");
-    var links = headlines.getElementsByTagName("A");
+    var links = headlines.getElementsByTagName("a");
 
-    var left = headlines.offsetLeft;
+    var left = headlines.offsetLeft; //returns the number of pixels
+    //that the upper left corner of the current element is offset to the left
 
     moveHeadlines();
 
-    console.log(links);
     function moveHeadlines() {
-        //main animation function: new position determined, move to new position, call itself to repeat
         left--;
-        if (left < -link[0].offsetWidth) {
-            left +=links[0];‚
+        if (left < -links[0].offsetWidth) {
+            left += links[0].offsetWidth; //add the width of the first link
+            //to the new left
             links[0].parentNode.appendChild(links[0]);
-        } links.style.left = '1px';
-         // move the element to the new left position 
-         //-> element e.g. img.style.top = '500px';
-        //-> check every time to see if time
-        console.log(left);
-       
+        }
+        headlines.style.left = left + "px";
+        // move the element to the new left position
+
         requestAnimationFrame(moveHeadlines);
     }
 })();
