@@ -1,5 +1,3 @@
-//Part 4:
-
 var innerSquare = document.getElementById("inner");
 var outerSquare = document.getElementById("outer");
 
