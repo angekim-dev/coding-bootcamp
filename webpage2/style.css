@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+html.menu {
+    overflow: hidden;
+}
+body {
+    margin: 0;
+    font-family: Georgia;
+    background: #fff;
+}
+header {
+    height: 70px;
+    padding: 20px 40px;
+}
+header img {
+    margin: -5px 0 0 -5px;
+    height: 40px;
+}
+header #top {
+    float: right;
+}
+header #top img {
+    margin: 0;
+    height: 30px;
+}
+#banner {
+    position: relative;
+}
+#banner img {
+    position: relative;
+    margin: 0;
+    vertical-align: bottom;
+    width: 100%;
+}
+
+#banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#banner .welcome {
+    color: #fff;
+    font-size: 36px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    transform: translateY(-50%);
+    padding: 0 40px;
+}
+#button {
+    display: inline-block;
+    margin-top: 20px;
+    border-radius: 30px;
+    border: 3px #c60 solid;
+    background: #fc3;
+    color: #333;
+    width: 250px;
+    line-height: 40px;
+    font-size: 26px;
+    color: #c60;
+    font-style: normal;
+}
+#icon-section {
+    background: #ccc;
+    padding: 40px;
+    text-align: center;
+}
+.benefit {
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    padding: 0 20px 0 70px;
+    width: 45%;
+    vertical-align: top;
+    margin-bottom: 30px;
+}
+.benefit h1 {
+    margin: 0;
+}
+.benefit .icon {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 40px;
+}
+footer {
+    padding: 10px 40px;
+    color: #eee;
+    background: #666;
+    font-size: 12px;
+}
+
+#hamburger-menu {
+    background-color: rgba(0, 0, 0, 0.425);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: hidden;
+    /* if background-color: black;
+    opacity: 0.5; -> all children also semi-transparent*/
+}
+
+#hamburger-menu.on {
+    visibility: visible;
+}
+#menu-side {
+    padding: 20px;
+    height: 100%;
+    width: 350px;
+    max-width: 50%; /*trying to avoid media query*/
+    background-color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: large;
+}
+
+#menu div {
+    margin: 10px 0;
+}
+
+#x {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: gray;
+    text-decoration: none;
+    font-size: 20px;
+}
+@media (max-width: 500px) {
+    header {
+        height: 70px;
+        padding: 20px;
+    }
+
+    #banner .welcome {
+        font-size: 20px;
+        transform: none;
+        top: 0;
+        margin-top: 50px;
+    }
+
+    #button {
+        margin-top: 20px;
+        width: 250px;
+        line-height: 30px;
+        font-size: 16px;
+        width: 150px;
+    }
+
+    .benefit {
+        width: auto;
+        display: block;
+    }
+}
