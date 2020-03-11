@@ -17,8 +17,14 @@ body {
     white-space: nowrap;
     position: absolute;
     left: 100%;
+    font-size: 0;
 }
 
 #headlines a {
     padding-right: 40px;
+    font-size: 14px;
+}
+
+a:visited {
+    color: black;
 }
