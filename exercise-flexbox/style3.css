@@ -1,0 +1,38 @@
+body {
+    display: flex;
+}
+.bigbox {
+    display: flex;
+    background-color: purple;
+    height: 200px;
+    width: 200px;
+    margin: 5px;
+}
+.bigbox:first-child {
+    background-color: gray;
+    justify-content: flex-end;
+}
+.second {
+    background-color: black;
+    justify-content: flex-end;
+}
+.third {
+    background-color: blue;
+}
+.small-box {
+    display: flex;
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+}
+.one {
+    background-color: orange;
+}
+.two {
+    align-self: flex-end;
+    background-color: yellow;
+}
+.three {
+    align-self: flex-end;
+    background-color: green;
+}
