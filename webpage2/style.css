@@ -121,8 +121,13 @@ footer {
     right: 0;
     top: 0;
     font-size: large;
+    transform: translateX(100%);
 }
-
+#menu-side.onscreen {
+    transform: translateX(0); /*puts images in initial position*/
+    transition-property: transform;
+    transition-duration: 1s;
+}
 #menu div {
     margin: 10px 0;
 }
