@@ -1,0 +1,55 @@
+/* css reset */
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 10px;
+    background: lightskyblue;
+
+    display: flex;
+    /* flex-direction: row; -> default direction of flex  */
+    /* flex-direction: column; */
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end; --> does not reverse the order  */
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
+    /* for cross axis: */
+    /* align-items: stretch; */
+    align-items: center;
+    /* align-items: flex-start; */
+    /* align-items: flex-end; */
+    /* align-items: baseline; */
+    flex-wrap: wrap;
+}
+
+.item {
+    background-color: palevioletred;
+    padding: 20px;
+    margin: 20px;
+    color: white;
+    font-size: 40px;
+}
+
+.first {
+    height: 200px;
+    font-size: 100px;
+    flex-grow: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.third {
+    font-size: 10px;
+    /* align-self: flex-end; */
+    align-self: flex-start;
+    order: -1; /* because flex counts 0000, -1 is the beinning, 1 is the end*/
+    flex-grow: 2;
+}
+.item:last-child {
+    align-self: flex-end;
+    order: -2;
+}

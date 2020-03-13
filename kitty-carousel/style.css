@@ -5,7 +5,7 @@ body {
 #kitties {
     height: 600px;
     position: relative;
-    border: 10px solid #2def41;
+    /* border: 10px solid #2def41; */
     overflow: hidden;
 }
 #kitties img {
@@ -39,7 +39,7 @@ body {
 }
 #dots {
     position: absolute; /*puts dots on top of the carousel*/
-    bottom: 125px; /*moves dots up*/
+    bottom: 150px; /*moves dots up*/
     display: flex; /*takes all elements inside of dots and puts them in a row*/
     justify-content: center;
     width: 100%;
