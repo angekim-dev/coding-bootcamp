@@ -1,0 +1,40 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    grid-template-rows: repeat(4, 150px);
+    gap: 5px;
+}
+.outerBox {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+.square1 {
+    background-color: orange;
+    grid-column: 2 / 3;
+}
+.square2 {
+    background-color: yellow;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+.square3 {
+    background-color: green;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+.square4 {
+    background-color: pink;
+}
+.grey {
+    background-color: grey;
+}
+.black {
+    background-color: black;
+}
+.blue {
+    background-color: blue;
+}
+.purple {
+    background-color: purple;
+}
