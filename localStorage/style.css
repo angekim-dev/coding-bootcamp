@@ -1,0 +1,13 @@
+body {
+    background-color: honeydew;
+}
+textarea {
+    width: 500px;
+    height: 500px;
+}
+#submit {
+    background-color: green;
+}
+#reveal {
+    background-color: hotpink;
+}
