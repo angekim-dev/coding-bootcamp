@@ -1,12 +1,8 @@
-.results {
+#search {
     border: gray solid 1px;
-    position: relative;
+    /* position: relative; */
     width: 112px;
 }
 .highlight {
     background-color: gray;
-    /* visibility: hidden; */
 }
-/* .on {
-    visibility: visible;
-} */

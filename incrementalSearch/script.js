@@ -1,276 +1,89 @@
 (function() {
-    var countries = [
-        "Afghanistan",
-        "Albania",
-        "Algeria",
-        "American Samoa",
-        "Angola",
-        "Anguilla",
-        "Antigua",
-        "Argentina",
-        "Armenia",
-        "Aruba",
-        "Australia",
-        "Austria",
-        "Azerbaijan",
-        "Bahamas",
-        "Bahrain",
-        "Bangladesh",
-        "Barbados",
-        "Belarus",
-        "Belgium",
-        "Belize",
-        "Benin",
-        "Bermuda",
-        "Bhutan",
-        "Bolivia",
-        "Bonaire (Netherlands Antilles)",
-        "Bosnia Herzegovina",
-        "Botswana",
-        "Brazil",
-        "British Virgin Islands",
-        "Brunei",
-        "Bulgaria",
-        "Burkina Faso",
-        "Burundi",
-        "Cambodia",
-        "Cameroon",
-        "Canada",
-        "Cape Verde",
-        "Cayman Islands",
-        "Central African Republic",
-        "Chad",
-        "Chile",
-        "China",
-        "Colombia",
-        "Comoros",
-        "Congo",
-        "Congo, The Democratic Republic of",
-        "Cook Islands",
-        "Costa Rica",
-        "Croatia",
-        "Curacao (Netherlands Antilles)",
-        "Cyprus",
-        "Czech Republic",
-        "Denmark",
-        "Djibouti",
-        "Dominica",
-        "Dominican Republic",
-        "Ecuador",
-        "Egypt",
-        "El Salvador",
-        "Equatorial Guinea",
-        "Eritrea",
-        "Estonia",
-        "Ethiopia",
-        "Fiji",
-        "Finland",
-        "France",
-        "French Guiana",
-        "French Polynesia",
-        "Gabon",
-        "Gambia",
-        "Georgia",
-        "Germany",
-        "Ghana",
-        "Gibraltar",
-        "Greece",
-        "Grenada",
-        "Guadeloupe",
-        "Guam",
-        "Guatemala",
-        "Guinea",
-        "Guinea Bissau",
-        "Guyana",
-        "Haiti",
-        "Honduras",
-        "Hong Kong",
-        "Hungary",
-        "Iceland",
-        "India",
-        "Indonesia",
-        "Iraq",
-        "Ireland (Republic of)",
-        "Israel",
-        "Italy",
-        "Ivory Coast",
-        "Jamaica",
-        "Japan",
-        "Jordan",
-        "Kazakhstan",
-        "Kenya",
-        "Kiribati",
-        "Kosovo",
-        "Kosrae Island",
-        "Kuwait",
-        "Kyrgyzstan",
-        "Laos",
-        "Latvia",
-        "Lebanon",
-        "Lesotho",
-        "Liberia",
-        "Libya",
-        "Lithuania",
-        "Luxembourg",
-        "Macau",
-        "Macedonia (FYROM)",
-        "Madagascar",
-        "Malawi",
-        "Malaysia",
-        "Maldives",
-        "Mali",
-        "Malta",
-        "Marshall Islands",
-        "Martinique",
-        "Mauritania",
-        "Mauritius",
-        "Mayotte",
-        "Mexico",
-        "Moldova",
-        "Mongolia",
-        "Montenegro",
-        "Montserrat",
-        "Morocco",
-        "Mozambique",
-        "Namibia",
-        "Nepal",
-        "Netherlands",
-        "New Caledonia",
-        "New Zealand",
-        "Nicaragua",
-        "Niger",
-        "Nigeria",
-        "Northern Mariana Islands",
-        "Norway",
-        "Oman",
-        "Pakistan",
-        "Palau",
-        "Panama",
-        "Papua New Guinea",
-        "Paraguay",
-        "Peru",
-        "Philippines",
-        "Poland",
-        "Ponape",
-        "Portugal",
-        "Puerto Rico",
-        "Qatar",
-        "Reunion",
-        "Romania",
-        "Rota",
-        "Russia",
-        "Rwanda",
-        "Saba (Netherlands Antilles)",
-        "Saipan",
-        "Samoa",
-        "Saudi Arabia",
-        "Senegal",
-        "Serbia",
-        "Seychelles",
-        "Sierra Leone",
-        "Singapore",
-        "Slovakia",
-        "Slovenia",
-        "Solomon Islands",
-        "South Africa",
-        "South Korea",
-        "Spain",
-        "Sri Lanka",
-        "St. Barthelemy",
-        "St. Croix",
-        "St. Eustatius (Netherlands Antilles)",
-        "St. John",
-        "St. Kitts and Nevis",
-        "St. Lucia",
-        "St. Maarten (Netherlands Antilles)",
-        "St. Thomas",
-        "St. Vincent and the Grenadines",
-        "Suriname",
-        "Swaziland",
-        "Sweden",
-        "Switzerland",
-        "Syria",
-        "Taiwan",
-        "Tajikistan",
-        "Tanzania",
-        "Thailand",
-        "Tinian",
-        "Togo",
-        "Tonga",
-        "Tortola",
-        "Trinidad and Tobago",
-        "Truk",
-        "Tunisia",
-        "Turkey",
-        "Turkmenistan",
-        "Turks and Caicos",
-        "Tuvalu",
-        "US Virgin Islands",
-        "Uganda",
-        "Ukraine",
-        "Union Island",
-        "United Arab Emirates",
-        "United Kingdom",
-        "United States",
-        "Uruguay",
-        "Uzbekistan",
-        "Vanuatu",
-        "Venezuela",
-        "Vietnam",
-        "Virgin Gorda",
-        "Wallis and Futuna",
-        "Yap",
-        "Yemen",
-        "Zambia",
-        "Zimbabwe"
-    ];
     var input = $("input");
     var resultsElem = $(".results");
 
     input.on("input", function() {
         var val = input.val();
+        $.ajax({
+            url: "http://spicedworld.herokuapp.com/",
+            method: "GET",
+            data: {
+                q: val
+            },
+            success: function(matches) {
+                // console.log("response: ", matches);
 
-        if (val == "") {
-            resultsElem.empty();
-            return;
-        }
-        var matches = [];
-        for (var i = 0; i < countries.length; i++) {
-            if (countries[i].toLowerCase().indexOf(val.toLowerCase()) == 0) {
-                matches.push(countries[i]);
-                if (matches.length == 4) {
-                    break;
+                if (val == "") {
+                    resultsElem.empty();
+                    return;
+                }
+                var resultsHtml = "";
+                for (var j = 0; j < matches.length; j++) {
+                    resultsHtml +=
+                        '<div class ="results">' + matches[j] + "</div>";
+                }
+                resultsElem.html(resultsHtml);
+                //timing issue
+
+                if (resultsHtml == "") {
+                    // console.log("nope");
+                    resultsElem.html("No results");
+                }
+                if (val == "") {
+                    resultsElem.empty();
+                    return;
                 }
             }
-        }
-
-        // convert matches into html elements and put them on the page
-        var resultsHtml = "";
-        for (var j = 0; j < matches.length; j++) {
-            resultsHtml += '<div class ="result">' + matches[j]; //concatenate
-        }
-        resultsElem.html(resultsHtml); //plops the string element
-
-        if (matches == "") {
-            // console.log("nope");
-            resultsElem.html("No results");
-        }
-        // if matches is empty then put "No results" in the result container element
-
-        // matches = matches.slice(0, 4);
+        });
     });
 
-    var highlight = $(".highlight");
-    highlight.on("mouseover", function(e) {
-        // console.log(highlight);
-        resultsElem.removeClass();
-        e.target.addClass();
+    resultsElem.on("mouseover", function(e) {
+        // console.log($(".results"));
+        // console.log(resultsElem);
+        $(e.target).addClass("highlight");
+        resultsElem.on("mouseout", function(e) {
+            $(e.target).removeClass("highlight");
+        });
     });
 
-    //if not there, then add it
-    // jQuery next -> gives next sibling
-    // jQuery prev method -> gives previous sibling
-    // jQuery index method -> gives element in parent
+    resultsElem.on("mousedown", function(event) {
+        input.val($(event.target).html());
+        resultsElem.empty();
+    });
+
+    // where problem??
+    input.on("keydown", function(ev) {
+        var highlight = $(".highlight");
+        if (ev.keyCode == 40) {
+            // console.log("down");
+            // console.log(highlight.length);
+            // console.log(resultsElem);
+            if (highlight.length == 0) {
+                resultsElem.first().addClass("highlight");
+                return;
+            }
+            if (highlight.length == 1) {
+                highlight.next().addClass("highlight");
+                highlight.prev().removeClass("highlight");
+            }
+        }
+        if (ev.keyCode == 38) {
+            // console.log("up");
+            if (highlight.length == 0) {
+                resultsElem.last().addClass("highlight");
+                return;
+            }
+            if (highlight.length == 1) {
+                highlight.prev().addClass("highlight");
+                highlight.next().removeClass("highlight");
+            }
+        }
+        if (ev.keyCode == 13) {
+            input.val(highlight).html();
+            resultsElem.empty();
+        }
+    });
+
     // input.on("focus", function(e) {
     //     input.trigger("input");
     // });
