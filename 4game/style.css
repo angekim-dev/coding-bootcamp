@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+}
+body {
+    background-image: url(fridakahlodiary41.jpg);
+}
+.game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+#board {
+    display: flex;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+.slot {
+    /* background-color: black; */
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.hole {
+    /* background-color: blanchedalmond; */
+    height: 80px;
+    width: 80px;
+    transform: translate(-30px, -30px);
+    border: 40px solid blue;
+    border-radius: 50%;
+}
+
+.player1 {
+    background-color: red;
+}
+
+.player2 {
+    background-color: yellow;
+}
+
+.victory {
+    background-color: rgba(0, 0, 0, 0.425);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    visibility: hidden;
+}
+
+.victory-window {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+h1 {
+    text-align: center;
+}
+button {
+    position: relative;
+    left: 50%;
+}
