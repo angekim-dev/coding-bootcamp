@@ -7,7 +7,7 @@
         var col = $(e.currentTarget);
         var slotsInCol = col.children();
 
-        console.log(slotsInCol);
+        // console.log(slotsInCol);
         // logs slots of clicked column
 
         //Loop through all slots, from last row upwards

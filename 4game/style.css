@@ -36,10 +36,32 @@ body {
 
 .player1 {
     background-color: red;
+    animation: redslide 1s;
+}
+@keyframes redslide {
+    0% {
+        background-color: pink;
+        height: 0px;
+    }
+    100% {
+        background-color: red;
+        height: 100px;
+    }
 }
 
 .player2 {
     background-color: yellow;
+    animation: yellowslide 1s;
+}
+@keyframes yellowslide {
+    0% {
+        background-color: beige;
+        height: 0px;
+    }
+    100% {
+        background-color: yellow;
+        height: 100px;
+    }
 }
 
 .victory {
@@ -61,12 +83,38 @@ body {
     border-radius: 10px;
     grid-row: 2 / 3;
     grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    grid-template-rows: 40% 20% 40%;
+    justify-items: center;
+    align-items: center;
+}
+
+#victory-gif {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
 }
 
 h1 {
-    text-align: center;
+    /* text-align: center; */
+    grid-row: 1 / 3;
+    grid-column: 2 / 3;
+    align-self: start;
+    font-style: italic;
+    font-size: 50px;
 }
 button {
-    position: relative;
-    left: 50%;
+    font-size: 30px;
+    background-color: red;
+    grid-row: 3 / 3;
+    grid-column: 2 / 3;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    transition: background-color 1s, transform 1s;
+}
+
+button:hover {
+    background-color: yellow;
+    transform: rotate(360deg);
 }
