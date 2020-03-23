@@ -53,21 +53,24 @@
             switchPlayer(); //switch turn
         }
         function diagonalWinOne() {
-            //from left top to right bottom
+            // starting point bottom left
             var count = 0;
             var columnIndex = $(e.currentTarget).index();
+            console.log("columnIndex: ", columnIndex);
             var row = i;
-
+            console.log("row: ", row);
             columnIndex = columnIndex - 4;
-            row = row - 4;
-
+            console.log("columnIndex -4: ", columnIndex);
+            row = row + 4;
+            console.log("row+4: ", row);
             for (var k = 0; k < 8; k++) {
                 //8 loops because max from 0 columns
                 //e.g. 0 columnIndex, columnIndex - 4 is -4, then 8 times
                 // console.log(k);
                 columnIndex++;
-                row++;
-
+                console.log("columnIndex++: ", columnIndex);
+                row--;
+                console.log("row++: ", row);
                 if (
                     columns
                         .eq(columnIndex)
@@ -84,23 +87,19 @@
                 }
             }
         }
-
         function diagonalWinTwo() {
-            // starting point bottom left
+            //from left top to right bottom
             var count = 0;
             var columnIndex = $(e.currentTarget).index();
-            // console.log("columnIndex: ", columnIndex);
             var row = i;
-            // console.log("row: ", row);
+
             columnIndex = columnIndex - 4;
-            // console.log("columnIndex -4: ", columnIndex);
-            row = row + 4;
-            // console.log("row+4: ", row);
+            row = row - 4;
+
             for (var k = 0; k < 8; k++) {
                 columnIndex++;
-                // console.log("columnIndex++: ", columnIndex);
-                row--;
-                // console.log("row++: ", row);
+                row++;
+
                 if (
                     columns
                         .eq(columnIndex)
