@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+}
+
+img {
+    height: 200px;
+}
+.container {
+    width: 90%;
+    margin: 30px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-gap: 2vw;
+    justify-items: center;
+}
+.card {
+    background-color: beige;
+    padding: 10px;
+    width: 100%;
+    justify-self: center;
+    max-width: 500px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+h2 {
+    color: darkslategray;
+}
+.bold {
+    font-weight: bold;
+}
+.quote-values {
+    font-style: italic;
+}
+p {
+    margin: 5px 0;
+}
