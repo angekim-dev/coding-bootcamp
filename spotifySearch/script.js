@@ -1,10 +1,12 @@
 (function() {
     // console.log ($);
+    var nextUrl;
+    var results = $("#results-container");
 
     $("#submit-button").on("click", function() {
         var userInput = $("input[name=user-input]").val(); //value which the user is typing in
         var dropdownSelectVal = $("select").val(); //artist or album
-        var baseUrl = " https://elegant-croissant.glitch.me/spotify"; //url to make our request to
+        var baseUrl = "https://elegant-croissant.glitch.me/spotify"; //url to make our request to
 
         $.ajax({
             //send this to our proxy
@@ -17,88 +19,92 @@
             },
             success: function(response) {
                 response = response.albums || response.artists; //returns object, with array items with interesting information
-                var myHtml = "";
-                var imgUrl = "/default.jpg";
                 if (response.items.length == 0) {
-                    myHtml +=
-                        "<div id = 'results-for'><h2>No results found for " +
-                        userInput +
-                        "</h2></div>";
+                    $("#results-for").html(
+                        '<div id="results-for">No results found for "' +
+                            userInput +
+                            '"</div>'
+                    );
                 } else {
-                    myHtml +=
-                        "<div id = 'results-for'><h2>Results for " +
-                        userInput +
-                        "</h2></div>";
+                    $("#results-for").html(
+                        '<div id="results-for">Results for "' +
+                            userInput +
+                            '"</div>'
+                    );
                 }
-                //loop over the response items
-                for (var i = 0; i < response.items.length; i++) {
-                    // console.log("response.items[i]", response.items[i]);
-                    // console.log("name of item", response.items[i].name);
-                    //check if the item that we are currently looping over has images
-                    if (response.items[i].images[0]) {
-                        imgUrl = response.items[i].images[0].url;
-                    }
-                    myHtml +=
-                        "<div><h3><a href='" +
-                        response.items[i].external_urls.spotify +
-                        "'>" +
-                        response.items[i].name +
-                        "</a></h3><a href='" +
-                        response.items[i].external_urls.spotify +
-                        "'><img src='" +
-                        imgUrl +
-                        "'></a></div>";
-                }
-                $("#results-container").html(myHtml);
 
-                var nextUrl =
-                    response.next && //only if response.next exists
-                    response.next.replace(
-                        "api.spotify.com/v1/search",
-                        "elegant-croissant.glitch.me/spotify"
-                    ); //takes 2 arguments, first the pattern that you want to replace, second what you want to replace it with
-                // console.log(nextUrl);
-                if (nextUrl === 0) {
-                    $("#more").hide();
-                } else {
-                    // make another ajax request, when the more button is clicked!!
-                    $("#more").on("click", function() {
-                        // console.log("click");
-                        // console.log("response.next:", response.next);
-                        $.ajax({
-                            //send this to our proxy
-                            url: nextUrl,
-                            method: "GET",
-                            success: function(response) {
-                                response = response.albums || response.artists;
-                                for (
-                                    var i = 0;
-                                    i < response.items.length;
-                                    i++
-                                ) {
-                                    if (response.items[i].images[0]) {
-                                        imgUrl =
-                                            response.items[i].images[0].url;
-                                    }
-                                    myHtml +=
-                                        "<div><h3><a href='" +
-                                        response.items[i].external_urls
-                                            .spotify +
-                                        "'>" +
-                                        response.items[i].name +
-                                        "</a></h3><a href='" +
-                                        response.items[i].external_urls
-                                            .spotify +
-                                        "'><img src='" +
-                                        imgUrl +
-                                        "'></a></div>";
-                                }
-                                $("#results-container").html(myHtml);
-                            }
-                        });
-                    });
-                }
+                results.html(getResultsHtml(response.items));
+                setNextUrl(response);
+
+                infiniteScroll();
             }
         });
     });
+
+    $("input, select").on("keydown", function(event) {
+        if (event.keyCode === 13) {
+            $("#submit-button").trigger("click");
+        }
+    });
+
+    function setNextUrl(response) {
+        var nextUrl =
+            response.next && //only if response.next exists
+            response.next.replace(
+                "api.spotify.com/v1/search",
+                "elegant-croissant.glitch.me/spotify"
+            );
+        return nextUrl;
+    }
+
+    $("#more").on("click", function() {
+        // console.log("click");
+        // console.log("response.next:", response.next);
+        $.ajax({
+            //send this to our proxy
+            url: nextUrl,
+            method: "GET",
+            success: function(response) {
+                response = response.albums || response.artists;
+
+                results.append(getResultsHtml(response.items));
+                setNextUrl(response);
+                infiniteScroll();
+            }
+        });
+    });
+    function getResultsHtml(items) {
+        var myHtml = "";
+        var imgUrl = "default.jpg";
+        for (var i = 0; i < items.length; i++) {
+            // console.log("response.items[i]", response.items[i]);
+            // console.log("name of item", response.items[i].name);
+            //check if the item that we are currently looping over has images
+            if (items[i].images[0]) {
+                imgUrl = items[i].images[0].url;
+            }
+            myHtml +=
+                "<div><h3><a href='" +
+                items[i].external_urls.spotify +
+                "'>" +
+                items[i].name +
+                "</a></h3><a href='" +
+                items[i].external_urls.spotify +
+                "'><img src='" +
+                imgUrl +
+                "'></a></div>";
+        }
+        return myHtml;
+    }
+    function infiniteScroll(response) {
+        var hasReachedBottom = $(window).height() + $(document).scrollTop();
+        if (location.search == "?scroll=infinite") {
+            if (hasReachedBottom == $(document).height()) {
+                results.append(getResultsHtml(response.items));
+                setNextUrl(response);
+            } else {
+                setTimeout(infiniteScroll, 500);
+            }
+        }
+    }
 })();
