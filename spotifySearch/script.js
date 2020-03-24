@@ -6,8 +6,6 @@
         var dropdownSelectVal = $("select").val(); //artist or album
         var baseUrl = " https://elegant-croissant.glitch.me/spotify"; //url to make our request to
 
-        $("#results-for").append("<h2>Results for " + userInput + "</h2>");
-
         $.ajax({
             //send this to our proxy
             url: baseUrl,
@@ -21,6 +19,17 @@
                 response = response.albums || response.artists; //returns object, with array items with interesting information
                 var myHtml = "";
                 var imgUrl = "/default.jpg";
+                if (response.items.length == 0) {
+                    myHtml +=
+                        "<div id = 'results-for'><h2>No results found for " +
+                        userInput +
+                        "</h2></div>";
+                } else {
+                    myHtml +=
+                        "<div id = 'results-for'><h2>Results for " +
+                        userInput +
+                        "</h2></div>";
+                }
                 //loop over the response items
                 for (var i = 0; i < response.items.length; i++) {
                     // console.log("response.items[i]", response.items[i]);
@@ -41,6 +50,7 @@
                         "'></a></div>";
                 }
                 $("#results-container").html(myHtml);
+
                 var nextUrl =
                     response.next && //only if response.next exists
                     response.next.replace(

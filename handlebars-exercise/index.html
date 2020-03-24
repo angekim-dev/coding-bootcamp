@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Exercise1</title>
+    </head>
+    <body>
+        <div class="container"></div>
+        <script id="cards" type="text/x-handlebars-template">
+            {{#authors}}
+                <div class="card">
+                    <img
+                            src="{{photo}}"
+                            alt=""
+                        />
+                        <h2>{{name}}</h2>
+
+                        <div class="writings">Selected Writings:</div>
+                        <div class="values writings-values">
+                            {{#selectedWritings}}
+                            <p>{{.}}</p>
+                            {{/selectedWritings}}
+                        </div>
+
+                        <div class="quote">Quote:</div>
+                         <div class="values quote-values">
+                            <p>{{quote}}</p>
+                           </div>
+
+                        <div class="born">Was born in </div>
+                        <div class="values born-values">
+                        <p>{{born}}</p>
+                        </div>
+
+                        <div class="died">Died in </div>
+                        <div class="values died-values">
+                        <p>{{died}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/authors}}
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
