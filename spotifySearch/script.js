@@ -57,22 +57,24 @@
         return nextUrl;
     }
 
-    $("#more").on("click", function() {
-        // console.log("click");
-        // console.log("response.next:", response.next);
-        $.ajax({
-            //send this to our proxy
-            url: nextUrl,
-            method: "GET",
-            success: function(response) {
-                response = response.albums || response.artists;
+    function getMoreResults(nextUrl) {
+        $("#more").on("click", function() {
+            // console.log("click");
+            // console.log("response.next:", response.next);
+            $.ajax({
+                //send this to our proxy
+                url: nextUrl,
+                method: "GET",
+                success: function(response) {
+                    response = response.albums || response.artists;
 
-                results.append(getResultsHtml(response.items));
-                setNextUrl(response);
-                infiniteScroll();
-            }
+                    results.append(getResultsHtml(response.items));
+                    setNextUrl(response);
+                    infiniteScroll();
+                }
+            });
         });
-    });
+    }
     function getResultsHtml(items) {
         var myHtml = "";
         var imgUrl = "default.jpg";
@@ -100,8 +102,7 @@
         var hasReachedBottom = $(window).height() + $(document).scrollTop();
         if (location.search == "?scroll=infinite") {
             if (hasReachedBottom == $(document).height()) {
-                results.append(getResultsHtml(response.items));
-                setNextUrl(response);
+                getMoreResults(nextUrl);
             } else {
                 setTimeout(infiniteScroll, 500);
             }
