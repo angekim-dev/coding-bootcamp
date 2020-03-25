@@ -1,7 +1,7 @@
 //exercise1
 let reverseArr = arr => arr.reverse();
 let array = [10, 20, 30];
-console.log(reverseArr(array));
+// console.log(reverseArr(array));
 
 // (let functionname = argument => argument.doSomething();)
 
@@ -15,7 +15,7 @@ console.log(reverseArr(array));
 let together = (arr1, arr2) => [...arr1, ...arr2];
 array1 = [10, 20, 30];
 array2 = [40, 50];
-console.log(together(array1, array2));
+// console.log(together(array1, array2));
 // Write a function that takes two arrays as arguments
 // and returns a new array containing all of the items in the two arrays passed to it.
 
@@ -30,20 +30,31 @@ const moscowRussia = {
     country: "Russia",
     population: "17 Million people living"
 };
-logInfo(moscowRussia);
+// logInfo(moscowRussia);
 
 // Rewrite the following function to use destructuring assignment for the three variables it creates
 // The three highlighted lines should be replaced with a single line.
 
 // exercise4
 
-function getNameAndCountry(obj) {
-    var arr = [];
-    arr.push(obj.name);
-    arr.push(obj.country);
-    return arr;
+function getNameAndCountry(city) {
+    return Object.values(city);
 }
 
+function getRelocatedCity(city1, city2) {
+    if (typeof city2 == "undefined") {
+        city2 = "Germany";
+        console.log(city2);
+    }
+    var secondNameAndCountry = getNameAndCountry(city2);
+    var country = secondNameAndCountry[1];
+    var city = city1.name;
+
+    return {
+        city,
+        country
+    };
+}
 // Pretend that it is 2002 and rewrite the following hipster Javascript so it will work in Internet Explorer 5 and Netscape 4.
 
 // let getNameAndCountry = ({ name, country }) => [name, country];
@@ -64,4 +75,4 @@ var kievUkraine = {
     name: "Kiev",
     country: "Ukraine"
 };
-console.log(getNameAndCountry(kievUkraine));
+console.log(getRelocatedCity(kievUkraine));
