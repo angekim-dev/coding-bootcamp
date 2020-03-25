@@ -26,3 +26,19 @@ for (const nums of fizzBuzz()) {
 // If the number is divisible by both 3 and 5, yield the string "fizzbuzz"
 // Then write a for...of loop that loops through the values
 // yielded by the generator function and logs each one
+
+//Exercise 2
+
+function* fn(arr) {
+    yield arr.reverse();
+}
+const array = fn([1, 2, 3]);
+let reverseArray = array.next().value;
+console.log(reverseArray);
+
+//Write a generator function
+//that expects to be passed an array of values.
+//When next is called on the iterator object that this function returns,
+//the values in the array should be yielded in reverse order.
+//The array that is passed to the generator function
+//should stay in its original order. -> CONST
