@@ -26,9 +26,25 @@ const story = {
                             answers: {
                                 yes: {
                                     q:
-                                        "SHE LIED ABOUT HER AGE, BUT FOR A GOOD REASON. At age 6, Frida contracted polio. Not only did this cause her right leg to be shorter and thinner than her left — something long skirts helped her disguise — but it kept her out of school for quite some time. After joining the elite National Preparatory School in 1922, she became immersed in indigenismo, a new sense of Mexican cultural pride. Thus, to show her commitment to Mexican culture — and disguise the fact that she was older — she shaved three years off her age. For the rest of her life, she declared that she was born on July 7, 1910—the year the Mexican Revolution started. DID YOU enjoy this Quizz? yes or yes? ",
+                                        "SHE LIED ABOUT HER AGE, BUT FOR A GOOD REASON. At age 6, Frida contracted polio. Not only did this cause her right leg to be shorter and thinner than her left — something long skirts helped her disguise — but it kept her out of school for quite some time. After joining the elite National Preparatory School in 1922, she became immersed in indigenismo, a new sense of Mexican cultural pride. Thus, to show her commitment to Mexican culture — and disguise the fact that she was older — she shaved three years off her age. For the rest of her life, she declared that she was born on July 7, 1910 — the year the Mexican Revolution started.  Next question? Yes, please! or No, I'm tired! ",
                                     answers: {
-                                        yes: "You better!"
+                                        "Yes, please!": {
+                                            q:
+                                                "Who did Frida Kahlo dream to become when she grows up? an artist or a doctor? ",
+                                            answers: {
+                                                "an artist":
+                                                    "Unfortunately wrong :( Byeeeeeee",
+                                                "a doctor": {
+                                                    q:
+                                                        "Exactly! As a child, Kahlo dreamed of being a doctor, with art being a side hobby nurtured by her father, who was a photographer. That dream ended at age 18, when Kahlo was involved in a horrific accident. The wooden bus she was traveling on collided with a streetcar. The near-fatal injuries kept Kahlo hospitalized for months. It was during this time that Kahlo’s father created a special easel that allowed her to paint in bed. The accident would cause Kahlo to live her life in chronic pain and she would frequently need surgery to help with her spinal injuries. SO, last question: Who was this Quizz about? ",
+                                                    answers: {
+                                                        "Frida Kahlo":
+                                                            "True! Now you know so much more about this magnificent woman! The game is over and you are the winner!"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "No, I'm tired!": "OK... Cya!"
                                     }
                                 },
                                 no: "Incorrect! Adios amigo!"
@@ -48,13 +64,13 @@ const story = {
 
 //here logic
 function askQuestion(frida) {
-    rl.question(chalk.cyan(frida.q), answer => {
+    rl.question(chalk.yellow(frida.q), answer => {
         //answer is a variable
 
         if (typeof frida.answers[answer] == "object") {
             askQuestion(frida.answers[answer]);
         } else if (frida.answers[answer]) {
-            console.log(chalk.green(frida.answers[answer]));
+            console.log(chalk.blue(frida.answers[answer]));
             rl.close();
         } else {
             //recursion
