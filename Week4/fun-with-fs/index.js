@@ -50,23 +50,23 @@ function mapSizes(path) {
         const pathAndName = path + "/" + item.name;
         if (item.isFile() == true) {
             const stat = fs.statSync(pathAndName);
-            console.log(stat.size);
+            obj[item.name] = stat.size;
         } else if (item.isDirectory() == true) {
-            mapSizes(pathAndName);
+            obj[item.name] = mapSizes(pathAndName);
         }
     }
     //do it al
     // console.log(items.name, item.isFile(), item.isDirectory());
     return obj;
 }
-console.log(mapSizes(__dirname + "/files"));
+mapSizes(__dirname + "/files");
 // once mapSizes works correctly
-// fs.writeFile(
-//     "files.json",
+fs.writeFileSync(
+    "files.json",
 
-//     JSON.stringify(mapSizes(__dirname + "/files")), //get a string on one line
-//     null, //not that important
-//     4
-// );
+    JSON.stringify(mapSizes(__dirname + "/files")), //get a string on one line
+    null, //not that important
+    4
+);
 
-// JSON.stringify(obj, null, 4);
+console.log(JSON.stringify(mapSizes(__dirname + "/files"), null, 4));
