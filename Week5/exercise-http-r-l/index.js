@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 const server = http.createServer((req, res) => {
     // magic happens here
     req.on("error", err => {
@@ -6,6 +7,41 @@ const server = http.createServer((req, res) => {
     });
     res.on("error", err => {
         console.log("err in res:", err);
+    });
+
+    let bonusInfo = "";
+
+    let realDate = new Date();
+    let day = realDate.getDate();
+    let month = realDate.getMonth() + 1;
+    let year = realDate.getFullYear();
+
+    let hour = realDate.getHours();
+    let minute = realDate.getMinutes();
+    let second = realDate.getSeconds();
+
+    bonusInfo +=
+        day +
+        "\t" +
+        month +
+        "\t" +
+        year +
+        "\t" +
+        hour +
+        "\t" +
+        minute +
+        "\t" +
+        second +
+        "\t" +
+        req.method +
+        "\t" +
+        req.url +
+        "\t" +
+        req.headers["user-agent"];
+
+    fs.appendFile("requests.txt", bonusInfo, err => {
+        if (err) throw err;
+        console.log(bonusInfo, " was appended to file!");
     });
 
     console.log("request url: ", req.url);
@@ -28,7 +64,7 @@ const server = http.createServer((req, res) => {
         // do not write body before sending response
         res.end();
     } else if (req.method == "POST") {
-        var body = "";
+        let body = "";
         req.on("data", chunkOfData => {
             body += chunkOfData;
         });
