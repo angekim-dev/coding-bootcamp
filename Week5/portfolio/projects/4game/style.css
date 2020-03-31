@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+}
+body {
+    background-image: url(fridakahlodiary41.jpg);
+}
+.game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+#board {
+    display: flex;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+.slot {
+    /* background-color: black; */
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.hole {
+    /* background-color: blanchedalmond; */
+    height: 80px;
+    width: 80px;
+    transform: translate(-30px, -30px);
+    border: 40px solid blue;
+    border-radius: 50%;
+}
+
+.player1 {
+    background-color: red;
+    animation: redslide 1s;
+}
+@keyframes redslide {
+    0% {
+        background-color: pink;
+        height: 0px;
+    }
+    100% {
+        background-color: red;
+        height: 100px;
+    }
+}
+
+.player2 {
+    background-color: yellow;
+    animation: yellowslide 1s;
+}
+@keyframes yellowslide {
+    0% {
+        background-color: beige;
+        height: 0px;
+    }
+    100% {
+        background-color: yellow;
+        height: 100px;
+    }
+}
+
+.victory {
+    background-color: rgba(0, 0, 0, 0.425);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    visibility: hidden;
+}
+
+.victory-window {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    grid-template-rows: 40% 20% 40%;
+    justify-items: center;
+    align-items: center;
+}
+
+#victory-gif {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+h1 {
+    /* text-align: center; */
+    grid-row: 1 / 3;
+    grid-column: 2 / 3;
+    align-self: start;
+    font-style: italic;
+    font-size: 50px;
+}
+button {
+    font-size: 30px;
+    background-color: red;
+    grid-row: 3 / 3;
+    grid-column: 2 / 3;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    transition: background-color 1s, transform 1s;
+}
+
+button:hover {
+    background-color: yellow;
+    transform: rotate(360deg);
+}

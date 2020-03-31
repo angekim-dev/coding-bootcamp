@@ -1,0 +1,16 @@
+body {
+    background-color: yellowgreen;
+}
+img {
+    height: 200px;
+    /* width: 200px; */
+}
+#results-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+h3 {
+    color: black;
+}
