@@ -31,6 +31,10 @@ http.createServer((req, res) => {
         return res.end();
     }
 
+    if (req.url === "/") {
+        return res.end(myHtml);
+    }
+
     const filePath = __dirname + "/projects" + req.url;
     // console.log('filePath: ',filePath);
 

@@ -1,27 +1,29 @@
-// module.exports.generateHtml = (req, res) => {
-const fs = require("fs");
-// will do fs stuff
-function readContents(path) {
-    const items = fs.readdirSync(path);
-    //flow is blocked until the whole file is read
-    console.log(items);
-    // for (const item of items) {
-    //     const itemName = item.name;
-    //     if (item.isFile() == true) {
-    //         console.log(item.name);
-    //     } else if (item.isDirectory() == true) {
-    //         console.log("directory");
-    //     }
-    // }
-    //do it al
-    // console.log(items.name, item.isFile(), item.isDirectory());
-}
-readContents(__dirname + "/projects/panes");
-//flow is blocked until the whole file is read
+module.exports.generateHtml = (req, res) => {
+    const fs = require("fs");
+    // will do fs stuff
 
-// loop through array that fs.readdirSync return
-return "<h1>MyPortfolio</h1>";
-// };
+    const items = fs.readdirSync(__dirname + "/projects/", {
+        withFileTypes: true
+    });
+    //flow is blocked until the whole file is read
+    let myHtml = `<!DOCTYPE html>
+        <html>
+        <body>
+        <h1>Portfolio</h1>
+        <ul>`;
+    for (const item of items) {
+        if (item.isDirectory() == true) {
+            // console.log("directory");
+            myHtml += "<li><a href='/" + item.name + "/'" + item.name + "</li>";
+        }
+    }
+    return (
+        myHtml +
+        `</ul>
+            </body>
+            </html>`
+    );
+};
 // Create a page that lists
 // and links to all of the projects in your portfolio.
 
