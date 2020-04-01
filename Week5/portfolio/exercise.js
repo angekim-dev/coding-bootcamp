@@ -1,31 +1,25 @@
-module.exports.generateHtml = (req, res) => {
-    const fs = require("fs");
+const fs = require("fs");
+module.exports.generateHtml = () => {
     // will do fs stuff
 
     const items = fs.readdirSync(__dirname + "/projects/", {
         withFileTypes: true
     });
     //flow is blocked until the whole file is read
-    let myHtml = `<!DOCTYPE html>
-        <html>
-        <body>
+
+    let siteHtml = `<!DOCTYPE html>
+        <title>Portfolio of my work</title>
         <h1>Portfolio</h1>
         <ul>`;
     for (const item of items) {
         if (item.isDirectory() == true) {
             // console.log("directory");
-            myHtml += "<li><a href='/" + item.name + "/'" + item.name + "</li>";
+            siteHtml +=
+                "<li><a href='/" + item.name + "'>" + item.name + "</a></li>";
         }
     }
-    return (
-        myHtml +
-        `</ul>
-            </body>
-            </html>`
-    );
+    return siteHtml + `</ul>`;
 };
-// Create a page that lists
-// and links to all of the projects in your portfolio.
 
 // Create a module to generate the projects page.
 // This module should require fs
