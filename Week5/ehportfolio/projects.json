@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Kitty Carousel",
+        "directory": "kitty-carousel"
+    },
+    {
+        "title": "Incremental Search",
+        "directory": "incrementalSearch"
+    },
+    {
+        "title": "Panes",
+        "directory": "panes"
+    },
+    {
+        "title": "spotifySearch",
+        "directory": "Spotify Search"
+    },
+    {
+        "title": "Ticker",
+        "directory": "ticker2"
+    },
+    {
+        "title": "Welcome to Spiced",
+        "directory": "webpage3"
+    },
+    {
+        "title": "Connect Four",
+        "directory": "4game"
+    }
+]
