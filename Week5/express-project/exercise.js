@@ -13,9 +13,26 @@ app.use(
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
+const basicAuth = require("basic-auth");
+
+const auth = function(req, res, next) {
+    const creds = basicAuth(req);
+    if (!creds || creds.name != "boom" || creds.pass != "bla") {
+        res.setHeader(
+            "WWW-Authenticate",
+            'Basic realm="Enter your credentials to see this stuff."'
+        );
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+};
+
+app.use("/4game/", auth);
+
 app.use((req, res, next) => {
     if (req.url !== "/cookie" && !req.cookies.acceptedCookies) {
-        res.cookie(("reqUrl", req.url));
+        res.cookie("reqUrl", req.url);
         res.redirect("/cookie");
     } else {
         next();
