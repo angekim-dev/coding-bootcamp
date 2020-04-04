@@ -1,0 +1,20 @@
+<a href="/" id="home">HOME</a>
+<div id="nav-bar">{{> nav}}
+</div>
+<div id="proj-desc">
+    {{#selectedProject}}
+    <title>{{title}}</title>
+    <div><img href="/{{directory}}" src='/{{directory}}/screenshot.jpg'/></div>
+    <a target="_blank" href="/{{directory}}">{{title}}</a>
+    <p>{{description}}</p>
+    {{/selectedProject}}
+</div>
+
+
+
+{{!-- <div>
+    <h3>{{toUpperCase message}}</h3>
+    {{#if screenshot}}
+        <img src="/screenshot.jpg" alt=screenshot>
+    {{/if}}
+</div> --}}
