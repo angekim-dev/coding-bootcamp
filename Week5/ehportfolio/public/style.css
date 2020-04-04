@@ -2,7 +2,13 @@
     background-color: green;
 } */
 img {
-    width: 300px;
+    max-width: 300px;
     height: auto;
     /* overflow: hidden; */
+}
+#container {
+    display: grid;
+    grid-template-columns: 500px;
+    justify-content: center;
+    align-items: center;
 }
