@@ -7,7 +7,7 @@ module.exports.getToken = (callback) => {
     let creds = `${consumerKey}:${consumerSecret}`;
     let encodedCreds = Buffer.from(creds).toString("base64");
 
-    const options = {
+    const optionsToken = {
         host: "api.twitter.com",
         path: "/oauth2/token",
         method: "POST",
@@ -17,34 +17,34 @@ module.exports.getToken = (callback) => {
         },
     };
 
-    const cb = function (response) {
-        if (response.statusCode != 200) {
-            console.log("response.statusCode ", response.statusCode);
-            callback(response.statusCode);
+    const cbToken = function (responseToken) {
+        if (responseToken.statusCode != 200) {
+            // console.log("responseToken.statusCode ", responseToken.statusCode);
+            callback(responseToken.statusCode);
             return;
         }
         let body = "";
-        response.on("data", (chunk) => {
+        responseToken.on("data", (chunk) => {
             body += chunk;
         });
 
-        response.on("end", () => {
+        responseToken.on("end", () => {
             let parsedBody = JSON.parse(body);
-            console.log("body response from twitter ...", parsedBody);
+            // console.log("parsedBody ...", parsedBody);
             callback(null, parsedBody.access_token);
         });
     };
 
-    const req = https.request(options, cb);
+    const reqToken = https.request(optionsToken, cbToken);
 
-    req.end("grant_type=client_credentials");
+    reqToken.end("grant_type=client_credentials");
 };
 
 module.exports.getTweets = (bearerToken, callback) => {
     //similar to above
     // this function gets the tweets from twitter api
 
-    const opt = {
+    const optTweets = {
         method: "GET",
         screen_name: "Missy_Magazine",
         host: "api.twitter.com",
@@ -55,31 +55,32 @@ module.exports.getTweets = (bearerToken, callback) => {
         },
     };
 
-    const cbTweets = function (res) {
-        if (res.statusCode != 200) {
-            console.log("*****res.statusCode: ", res.statusCode);
-            callback(res.statusCode);
+    const cbTweets = function (resTweets) {
+        if (resTweets.statusCode != 200) {
+            // console.log("resTweets.statusCode: ", resTweets.statusCode);
+            callback(resTweets.statusCode);
             return;
         }
         let bodyTweets = "";
-        res.on("data", (chunk) => {
+        resTweets.on("data", (chunk) => {
             bodyTweets += chunk;
         });
-        res.on("end", () => {
+        resTweets.on("end", () => {
             let parsedBodyTweets = JSON.parse(bodyTweets);
-            console.log(
-                "*****body response from twitter ...",
-                parsedBodyTweets
-            );
+            // console.log("parsedBodyTweets ...", parsedBodyTweets);
             callback(null, parsedBodyTweets);
         });
     };
-    const req = https.request(opt, cbTweets);
-    req.end();
+    const reqTweets = https.request(optTweets, cbTweets);
+    reqTweets.end();
 };
 
 module.exports.filterTweets = (tweets) => {
     // filters the response we get from twitter api
     // no asynchronous behaviour
     // for loops, filtering, mapping, everyday js, no callback
+    tweets.some((element) => {
+        console.log(element.full_text);
+    });
+    // console.log(tweets);
 };
