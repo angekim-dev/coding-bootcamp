@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const { getToken } = require("./twitter.js");
+const { getToken, getTweets, filterTweets } = require("./twitter.js");
 
 app.use(express.static("./ticker3"));
 
@@ -23,7 +23,7 @@ app.get("/ticker3.json", (req, res) => {
             }
 
             // 3. filter tweets
-            const filteredTweets = filteredTweets(tweets);
+            const filteredTweets = filterTweets(tweets);
             // 4. send back a response (i.e. res.json(filteredTweets))
             res.json(filteredTweets);
         });

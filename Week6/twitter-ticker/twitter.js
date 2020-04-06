@@ -20,6 +20,7 @@ module.exports.getToken = (callback) => {
     const cb = function (response) {
         if (response.statusCode != 200) {
             console.log("response.statusCode ", response.statusCode);
+            callback(response.statusCode);
             return;
         }
         let body = "";
@@ -37,19 +38,44 @@ module.exports.getToken = (callback) => {
     const req = https.request(options, cb);
 
     req.end("grant_type=client_credentials");
-
-    // let token;
-    // console.log("callback in getToken");
-    // setTimeout(() => {
-    //     token = "ukjhbkhgvkbk";
-    //     console.log("about to return token");
-    //     callback(token);
-    // }, 2000);
 };
 
 module.exports.getTweets = (bearerToken, callback) => {
     //similar to above
     // this function gets the tweets from twitter api
+
+    const opt = {
+        method: "GET",
+        screen_name: "Missy_Magazine",
+        host: "api.twitter.com",
+        path:
+            "/1.1/statuses/user_timeline.json?screen_name=Missy_Magazine&tweet_mode=extended",
+        headers: {
+            Authorization: "Bearer " + bearerToken,
+        },
+    };
+
+    const cbTweets = function (res) {
+        if (res.statusCode != 200) {
+            console.log("*****res.statusCode: ", res.statusCode);
+            callback(res.statusCode);
+            return;
+        }
+        let bodyTweets = "";
+        res.on("data", (chunk) => {
+            bodyTweets += chunk;
+        });
+        res.on("end", () => {
+            let parsedBodyTweets = JSON.parse(bodyTweets);
+            console.log(
+                "*****body response from twitter ...",
+                parsedBodyTweets
+            );
+            callback(null, parsedBodyTweets);
+        });
+    };
+    const req = https.request(opt, cbTweets);
+    req.end();
 };
 
 module.exports.filterTweets = (tweets) => {
