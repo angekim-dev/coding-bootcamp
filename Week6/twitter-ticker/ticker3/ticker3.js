@@ -1,11 +1,11 @@
 // don't forget to do your sanity check!
 // console.log($);
 
-(function() {
+(function () {
     $.ajax({
         url: "/ticker3.json",
         method: "GET",
-        success: function(response) {
+        success: function (response) {
             // console.log("response: ", response);
 
             var myHtml = "";
@@ -29,15 +29,16 @@
 
             function moveHeadlines() {
                 left--;
-                if (left < $(-headlines.eq(0)).outerWidth()) {
-                    left += $(headlines.eq(0)).outerWidth(); //add the width of the first link
+                if (left < -$("#headlines a").eq(0).outerWidth()) {
+                    left += $("#headlines a").eq(0).outerWidth(); //add the width of the first link
                     //to the new left
-                    $(headlines.eq(0))
+                    $("#headlines a")
+                        .eq(0)
                         .parent()
-                        .append(headlines[0]);
+                        .append($("#headlines a").eq(0));
                 }
                 headlines.css({
-                    left: left + "px"
+                    left: left + "px",
                 });
                 // move the element to the new left position
 
@@ -45,29 +46,29 @@
             }
 
             for (var i = 0; i < headlines.length; i++) {
-                $(headlines.eq(i)).on("mouseover", function(e) {
+                $(headlines.eq(i)).on("mouseover", function (e) {
                     // console.log("over");
                     cancelAnimationFrame(anim);
                     $(e.target).css({
-                        color: "blue"
+                        color: "blue",
                     });
                     $(e.target).css({
-                        decoration: "underline"
+                        decoration: "underline",
                     });
                 });
-                $(headlines.eq(i)).on("mouseout", function(e) {
+                $(headlines.eq(i)).on("mouseout", function (e) {
                     moveHeadlines();
                     $(e.target).css({
-                        color: ""
+                        color: "",
                     });
                     $(e.target).css({
-                        decoration: ""
+                        decoration: "",
                     });
                 });
             }
         },
-        error: function(err) {
+        error: function (err) {
             console.log("err: ", err);
-        }
+        },
     });
 })(); // invoke your iife!

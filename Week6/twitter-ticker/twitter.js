@@ -46,7 +46,7 @@ module.exports.getTweets = (bearerToken, callback) => {
 
     const optTweets = {
         method: "GET",
-        screen_name: "Missy_Magazine",
+        // screen_name: "Missy_Magazine",
         host: "api.twitter.com",
         path:
             "/1.1/statuses/user_timeline.json?screen_name=Missy_Magazine&tweet_mode=extended",
@@ -90,13 +90,8 @@ module.exports.filterTweets = (tweets) => {
         // console.log(tickerText);
         let runningText = tickerText.substring(0, 50) + "...";
         // console.log(runningText, url);
-        tweetArray.push(runningText, url);
-        console.log(tweetArray);
+        tweetArray.push({ runningText, url });
+        // console.log(tweetArray);
     }
     return tweetArray;
-
-    // tweets.some((element) => {
-    //     console.log(element.full_text);
-    // });
-    // console.log(tweets);
 };
