@@ -1,5 +1,6 @@
 const fs = require("fs");
 module.exports.generateHtml = () => {
+    //export outside of the current module
     // will do fs stuff
 
     const items = fs.readdirSync(__dirname + "/projects/", {

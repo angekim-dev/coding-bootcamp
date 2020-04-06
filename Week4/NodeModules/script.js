@@ -7,20 +7,30 @@ function output() {
 
     const parsedUrl = url.parse(thirdStr);
 
-    console.log("The protocol is ", parsedUrl.protocol);
-    console.log("The host is ", parsedUrl.host);
-    console.log("The hostname is ", parsedUrl.hostname);
-    console.log("The port is ", parsedUrl.port);
-    console.log("The pathname is ", parsedUrl.pathname);
-
-    console.log(
-        "The value of the a parameter is ",
-        querystring.parse(parsedUrl.query).a
-    );
-    console.log(
-        "The value of the b parameter is ",
-        querystring.parse(parsedUrl.query).b
-    );
+    console.log(`
+    The protocol is ${parsedUrl.protocol}
+    The host is ${parsedUrl.host}
+    The hostname is ${parsedUrl.hostname}
+    The port is ${parsedUrl.port}
+    The pathname is ${parsedUrl.pathname}`);
+    if (parsedUrl.query !== null) {
+        let parsedQuery = querystring.parse(parsedUrl.query);
+        for (const key in parsedQuery) {
+            console.log(
+                `The value of the ${key} parameter is ${parsedQuery[key]}`
+            );
+        }
+    } else {
+        console.log(`The query is null`);
+    }
+    // console.log(
+    //     "The value of the a parameter is ",
+    //     querystring.parse(parsedUrl.query).a
+    // );
+    // console.log(
+    //     "The value of the b parameter is ",
+    //     querystring.parse(parsedUrl.query).b
+    // );
 }
 output();
 

@@ -12,11 +12,9 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const { generateHtml } = require("./exercise.js");
+const generate = require("./exercise.js"); //require module we created
 
-console.log("generateHtml: ", generateHtml);
-
-const myHtml = generateHtml();
+const myHtml = generate.generateHtml(); // module required plus function from module
 
 console.log("myHtml: ", myHtml);
 

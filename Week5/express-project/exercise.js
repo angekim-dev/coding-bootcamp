@@ -17,7 +17,7 @@ const basicAuth = require("basic-auth");
 
 const auth = function(req, res, next) {
     const creds = basicAuth(req);
-    if (!creds || creds.name != "boom" || creds.pass != "bla") {
+    if (!creds || creds.name != "abc" || creds.pass != "123") {
         res.setHeader(
             "WWW-Authenticate",
             'Basic realm="Enter your credentials to see this stuff."'
