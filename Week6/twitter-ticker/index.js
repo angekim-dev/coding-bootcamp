@@ -5,20 +5,20 @@ const { getToken, getTweets, filterTweets } = require("./twitter.js");
 app.use(express.static("./ticker3"));
 
 app.get("/ticker3.json", (req, res) => {
-    console.log("need to serve some JSON!");
+    // console.log("need to serve some JSON!");
 
     // 1. get the bearerToken from twitter
 
     getToken(function (err, bearerToken) {
         if (err) {
-            console.log("error in getToken", err);
+            // console.log("error in getToken", err);
             return;
         }
-        console.log("in index.js the bearerToken is", bearerToken);
+        // console.log("in index.js the bearerToken is", bearerToken);
         // 2. use it to get tweets
         getTweets(bearerToken, function (err, tweets) {
             if (err) {
-                console.log("error in getTweets", err);
+                // console.log("error in getTweets", err);
                 return;
             }
 
