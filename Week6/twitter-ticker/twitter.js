@@ -79,13 +79,17 @@ module.exports.filterTweets = (tweets) => {
     // filters the response we get from twitter api
     // no asynchronous behaviour
     // for loops, filtering, mapping, everyday js, no callback
+    let tweetArray = [];
     for (let i = 0; i < tweets.length; i++) {
-        // if (tweets[i].entities.urls[0]) {
-
-        // }
+        let url = "";
+        if (tweets[i].entities.urls.length == 1) {
+            url = tweets[i].entities.urls[0].url;
+        }
         let tickerText = tweets[i].full_text;
         console.log(tickerText);
+        tweetArray.push(tickerText);
     }
+    return tweetArray;
 
     // tweets.some((element) => {
     //     console.log(element.full_text);
