@@ -66,9 +66,9 @@ module.exports.getTweets = (bearerToken, callback) => {
             bodyTweets += chunk;
         });
         resTweets.on("end", () => {
-            let parsedBodyTweets = JSON.parse(bodyTweets);
-            // console.log("parsedBodyTweets ...", parsedBodyTweets);
-            callback(null, parsedBodyTweets);
+            let tweets = JSON.parse(bodyTweets);
+            // console.log("tweets ...", tweets);
+            callback(null, tweets);
         });
     };
     const reqTweets = https.request(optTweets, cbTweets);
@@ -82,12 +82,16 @@ module.exports.filterTweets = (tweets) => {
     let tweetArray = [];
     for (let i = 0; i < tweets.length; i++) {
         let url = "";
-        if (tweets[i].entities.urls.length == 1) {
+        if (tweets[i].entities.urls.length === 1) {
             url = tweets[i].entities.urls[0].url;
+            // console.log(url);
         }
         let tickerText = tweets[i].full_text;
-        console.log(tickerText);
-        tweetArray.push(tickerText);
+        // console.log(tickerText);
+        let runningText = tickerText.substring(0, 50) + "...";
+        // console.log(runningText, url);
+        tweetArray.push(runningText, url);
+        console.log(tweetArray);
     }
     return tweetArray;
 
