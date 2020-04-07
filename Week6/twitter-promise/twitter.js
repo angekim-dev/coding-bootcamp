@@ -56,19 +56,21 @@ module.exports.getTweets = (bearerToken, callback) => {
     };
 
     const cbTweets = function (resTweets) {
-        if (resTweets.statusCode != 200) {
-            // console.log("resTweets.statusCode: ", resTweets.statusCode);
-            callback(resTweets.statusCode);
-            return;
-        }
-        let bodyTweets = "";
-        resTweets.on("data", (chunk) => {
-            bodyTweets += chunk;
-        });
-        resTweets.on("end", () => {
-            let tweets = JSON.parse(bodyTweets);
-            // console.log("tweets ...", tweets);
-            callback(null, tweets);
+        return new Promise((resolve, reject) => {
+            if (resTweets.statusCode != 200) {
+                // console.log("resTweets.statusCode: ", resTweets.statusCode);
+                resolve(resTweets.statusCode);
+                return;
+            }
+            let bodyTweets = "";
+            resTweets.on("data", (chunk) => {
+                bodyTweets += chunk;
+            });
+            resTweets.on("end", () => {
+                let tweets = JSON.parse(bodyTweets);
+                // console.log("tweets ...", tweets);
+                resolve(null, tweets);
+            });
         });
     };
     const reqTweets = https.request(optTweets, cbTweets);
