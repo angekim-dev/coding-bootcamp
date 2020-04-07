@@ -81,16 +81,16 @@ module.exports.filterTweets = (tweets) => {
     // for loops, filtering, mapping, everyday js, no callback
     let tweetArray = [];
     for (let i = 0; i < tweets.length; i++) {
-        let url = "";
+        let href = "";
         if (tweets[i].entities.urls.length === 1) {
-            url = tweets[i].entities.urls[0].url;
+            href = tweets[i].entities.urls[0].url;
             // console.log(url);
         }
         let tickerText = tweets[i].full_text;
         // console.log(tickerText);
-        let runningText = tickerText.substring(0, 50) + "...";
+        let text = tickerText.substring(0, 50) + "...";
         // console.log(runningText, url);
-        tweetArray.push({ runningText, url });
+        tweetArray.push({ href, text });
         // console.log(tweetArray);
     }
     return tweetArray;
