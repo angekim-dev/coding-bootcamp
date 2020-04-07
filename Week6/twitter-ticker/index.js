@@ -35,3 +35,14 @@ app.get("/ticker3.json", (req, res) => {
 });
 
 app.listen(8080, () => console.log("twitter ticker up"));
+
+// getToken().then(
+//     token => getTweets (token)
+// ).then (tweets =>{
+
+// }).catch(
+//     err => {
+//         console.log(err);
+//         res.sendStatus(500);
+//     }
+// );
