@@ -42,7 +42,7 @@ module.exports.getToken = (callback) => {
     reqToken.end("grant_type=client_credentials");
 };
 
-module.exports.getTweets = (bearerToken, maybeHere, callback) => {
+module.exports.getTweets = (bearerToken, neededTweets, callback) => {
     //similar to above
     // this function gets the tweets from twitter api
 
@@ -50,7 +50,7 @@ module.exports.getTweets = (bearerToken, maybeHere, callback) => {
         method: "GET",
         // screen_name: "Missy_Magazine",
         host: "api.twitter.com",
-        path: `/1.1/statuses/user_timeline.json?screen_name=${maybeHere}&tweet_mode=extended`,
+        path: `/1.1/statuses/user_timeline.json?screen_name=${neededTweets}&tweet_mode=extended`,
         headers: {
             Authorization: "Bearer " + bearerToken,
         },
@@ -93,7 +93,7 @@ module.exports.filterTweets = (tweets) => {
         let text = tickerText.substring(0, 50) + "...";
         // console.log(runningText, url);
         tweetArray.push({ href, text });
-        console.log(tweetArray);
+        // console.log(tweetArray);
     }
     return tweetArray;
 };
