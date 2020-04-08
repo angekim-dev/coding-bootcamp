@@ -16,6 +16,7 @@ test("If there are no matching countries, an empty array is returned", () => {
 
 test("The array that it returns contains no more than four matches", () => {
     const result = find("A");
-    expect(result.length).toBeLessThanOrEqual(4);
+    expect(result.length).toBeLessThan(5);
+    expect(result.length).toBeGreaterThan(0);
     console.log(find("a"));
 });
