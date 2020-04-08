@@ -18,22 +18,20 @@ module.exports.getToken = (callback) => {
     };
 
     const cbToken = function (responseToken) {
-        return new Promise((resolve, reject) => {
-            if (responseToken.statusCode != 200) {
-                // console.log("responseToken.statusCode ", responseToken.statusCode);
-                callback(responseToken.statusCode);
-                return;
-            }
-            let body = "";
-            responseToken.on("data", (chunk) => {
-                body += chunk;
-            });
+        if (responseToken.statusCode != 200) {
+            // console.log("responseToken.statusCode ", responseToken.statusCode);
+            callback(responseToken.statusCode);
+            return;
+        }
+        let body = "";
+        responseToken.on("data", (chunk) => {
+            body += chunk;
+        });
 
-            responseToken.on("end", () => {
-                let parsedBody = JSON.parse(body);
-                // console.log("parsedBody ...", parsedBody);
-                callback(null, parsedBody.access_token);
-            });
+        responseToken.on("end", () => {
+            let parsedBody = JSON.parse(body);
+            // console.log("parsedBody ...", parsedBody);
+            callback(null, parsedBody.access_token);
         });
     };
 
@@ -43,12 +41,10 @@ module.exports.getToken = (callback) => {
 };
 
 module.exports.getTweets = (bearerToken, neededTweets, callback) => {
-    //similar to above
     // this function gets the tweets from twitter api
 
     const optTweets = {
         method: "GET",
-        // screen_name: "Missy_Magazine",
         host: "api.twitter.com",
         path: `/1.1/statuses/user_timeline.json?screen_name=${neededTweets}&tweet_mode=extended`,
         headers: {
@@ -91,7 +87,7 @@ module.exports.filterTweets = (tweets) => {
             "*" + tweets[i].user.screen_name + "* " + tweets[i].full_text;
         // console.log(tickerText);
         let text = tickerText.substring(0, 50) + "...";
-        // console.log(runningText, url);
+        // console.log(text, href);
         tweetArray.push({ href, text });
         // console.log(tweetArray);
     }

@@ -8,9 +8,9 @@ getTweets = promisify(getTweets);
 app.use(express.static("./ticker3"));
 
 app.get("/ticker3.json", (req, res) => {
-    console.log("JSON");
+    // console.log("JSON");
     getToken().then((bearerToken) => {
-        console.log(bearerToken);
+        // console.log(bearerToken);
         return Promise.all([
             getTweets(bearerToken, "Missy_Magazine"),
             getTweets(bearerToken, "derfreitag"),
@@ -26,7 +26,7 @@ app.get("/ticker3.json", (req, res) => {
                     ...result[2],
                 ];
                 // OR const mergedResults == [...drake, ...beyonce, ...taylor];
-                console.log("mergedResults:", mergedResults);
+                // console.log("mergedResults:", mergedResults);
                 const sortedTweets = mergedResults.sort((a, b) => {
                     return new Date(b.created_at) - new Date(a.created_at);
                 });
@@ -40,21 +40,6 @@ app.get("/ticker3.json", (req, res) => {
             })
             .catch((err) => console.log("err:", err));
     });
-    // .catch((err) => {
-    //     console.log("err in getToken", err);
-    //     res.sendStatus(500);
-    // });
 });
 
 app.listen(8080, () => console.log("twitter ticker up"));
-
-// getToken().then(
-//     token => getTweets (token)
-// ).then (tweets =>{
-
-// }).catch(
-//     err => {
-//         console.log(err);
-//         res.sendStatus(500);
-//     }
-// );
